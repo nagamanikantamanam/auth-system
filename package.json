@@ -1,14 +1,22 @@
 {
-  "name": "@auth-system/source",
+  "name": "@products-list/source",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"pnpm --filter frontend dev\" \"pnpm --filter api start\"",
-    "build": "nx run-many --target=build --parallel"
+    "prestart":"pnpm --filter scripts load",
+    "start": "concurrently \"pnpm --filter frontend dev\" \"pnpm --filter api exec pnpm start\"",
+    "build": "nx run-many --target=build --parallel",
+    "format": "prettier --write ."
   },
   "private": true,
   "dependencies": {
-    "concurrently": "^9.1.2"
+    "@types/prompt-sync": "^4.2.3",
+    "@types/readline-sync": "^1.4.8",
+    "concurrently": "^9.1.2",
+    "dotenv": "^16.4.7",
+    "prompt-sync": "^4.2.0",
+    "readline-sync": "^1.4.10",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@nx/js": "20.6.1",
@@ -16,8 +24,9 @@
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
     "nx": "20.6.1",
-    "prettier": "^2.6.2",
+    "prettier": "^2.8.8",
     "tslib": "^2.3.0",
+    "tsx": "^4.19.3",
     "typescript": "~5.7.2"
   }
 }
