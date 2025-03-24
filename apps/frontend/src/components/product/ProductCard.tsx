@@ -1,11 +1,10 @@
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
-import { Product } from "../../types/productTypes";
-import { styled } from "@mui/material/styles";
+import { Card, CardMedia, CardContent, Typography } from '@mui/material';
+import { Product } from '../../types/productTypes';
+import { styled } from '@mui/material/styles';
+import { FRONTEND_CONFIG } from '../../env.config';
 interface Props {
   product: Product;
 }
-
-
 
 const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: 250,
@@ -13,37 +12,46 @@ const StyledCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
-const StyledCardMedia = styled(CardMedia)({
-  height: 140,
-});
 
 const StyledTitle = styled(Typography)({
-  fontSize: "1.25rem",
+  fontSize: '1.25rem',
   fontWeight: 600,
 });
 
 const StyledPrice = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontWeight: "bold",
+  fontWeight: 'bold',
 }));
 
 const StyledDiscount = styled(Typography)(({ theme }) => ({
   color: theme.palette.error.main,
 }));
 
-export default function ProductCard({ product }:Props) {
-  const discountedPrice = (product.price * (1 - product.discount / 100)).toFixed(2);
+export default function ProductCard({ product }: Props) {
+  console.log(product)
+  const discountedPrice = (
+    product.price *
+    (1 - product.discount / 100)
+  ).toFixed(2);
 
   return (
     <StyledCard>
-      <StyledCardMedia  src={product.image}  />
+      <CardMedia
+        component="img"
+        height="140"
+        image={`${FRONTEND_CONFIG.apiUrl}/static/${product.image}`}
+        alt={product.description}
+      />
       <CardContent>
         <StyledTitle variant="h6">{product.title}</StyledTitle>
-        <Typography variant="body1" color="text.secondary">Price: ₹{product.price}</Typography>
-        <StyledDiscount variant="body2">Discount: {product.discount}%</StyledDiscount>
+        <Typography variant="body1" color="text.secondary">
+          Price: ₹{product.price}
+        </Typography>
+        <StyledDiscount variant="body2">
+          Discount: {product.discount}%
+        </StyledDiscount>
         <StyledPrice variant="h6">₹{discountedPrice}</StyledPrice>
       </CardContent>
     </StyledCard>
   );
 }
-

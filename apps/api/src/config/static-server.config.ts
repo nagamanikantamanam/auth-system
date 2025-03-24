@@ -1,5 +1,4 @@
-export const staticServerOptions={
-    etag: true, 
-    maxAge: "1d", 
-  };
-  
+export const staticServerOptions = {
+  etag: true,
+  maxAge: '1d',
+};

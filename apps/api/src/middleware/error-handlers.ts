@@ -2,7 +2,12 @@ import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { ApiError } from '../utils/api-error';
 import { z } from 'zod';
-export const globalErrorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+export const globalErrorHandler = (
+  err: any,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   console.log(err.instanceof);
   if (err instanceof z.ZodError) {
     res.status(StatusCodes.BAD_REQUEST).json({
@@ -32,7 +37,12 @@ export const globalErrorHandler = (err: any, req: Request, res: Response, next: 
   });
 };
 
-export const jsonErrorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+export const jsonErrorHandler = (
+  err: any,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   console.log('Middleware executed');
 
   if (err instanceof SyntaxError) {

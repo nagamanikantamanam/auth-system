@@ -1,19 +1,16 @@
 // @ts-ignore
-import { match } from "ts-pattern";
-import Grid from "@mui/material/Grid2";
-import ProductCard from "./ProductCard";
-import ProductSkeleton from "./ProductSkeleton";
-import PaginationComponent from "../common/Pagination";
-import { useProducts } from "../../hooks/useProducts";
-import { useState } from "react";
+import { match } from 'ts-pattern';
+import Grid from '@mui/material/Grid2';
+import ProductCard from './ProductCard';
+import ProductSkeleton from './ProductSkeleton';
+import PaginationComponent from '../common/Pagination';
+import { useProducts } from '../../hooks/useProducts';
+import { useState } from 'react';
 
 const ProductList = () => {
-  
-
   const [page, setPage] = useState(1);
   const productsPerPage = 12;
-  const { products, loading ,totalPages} = useProducts(page, productsPerPage);
-
+  const { products, loading, totalPages } = useProducts(page, productsPerPage);
 
   return (
     <div>
@@ -26,7 +23,6 @@ const ProductList = () => {
           </Grid>
         ))
         .with(false, () => (
-
           <>
             <Grid container justifyContent="center" spacing={2} columns={12}>
               {products?.map((product) => (
@@ -42,7 +38,7 @@ const ProductList = () => {
             />
           </>
         ))
-        
+
         .exhaustive()}
     </div>
   );

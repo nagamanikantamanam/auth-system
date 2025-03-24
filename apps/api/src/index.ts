@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+
 import { envConfig } from './config/env.config';
 import { test } from './test';
 import { checkDBConnection } from './utils/database-utils';
@@ -19,9 +20,12 @@ const __dirname = dirname(__filename);
 const app = express();
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '1mb' }));
-app.use('/static', express.static(join(__dirname, '..', 'public'), staticServerOptions));
+app.use(
+  '/static',
+  express.static(join(__dirname, '..', 'public'), staticServerOptions)
+);
 app.get('/test', wrapErrorHandler(test));
-app.use('/products',productsRouter);
+app.use('/products', productsRouter);
 const startServer = async () => {
   await checkDBConnection();
   app.listen(PORT, () => {

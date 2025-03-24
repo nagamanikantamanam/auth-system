@@ -1,9 +1,8 @@
 {
   "name": "@products-list/source",
-  "version": "0.0.0",
-  "license": "MIT",
+  "version": "1.0.0",
   "scripts": {
-    "prestart":"pnpm --filter scripts load",
+    "prestart": "pnpm --filter scripts load",
     "start": "concurrently \"pnpm --filter frontend dev\" \"pnpm --filter api exec pnpm start\"",
     "build": "nx run-many --target=build --parallel",
     "format": "prettier --write ."

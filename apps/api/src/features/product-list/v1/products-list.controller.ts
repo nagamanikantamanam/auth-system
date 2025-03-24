@@ -9,17 +9,22 @@ const paginationSchema = z.object({
     .string()
     .regex(/^\d+$/, { message: 'Page must be a positive number' })
     .transform(Number)
-    .refine(val => val >= 1, { message: 'Page must be at least 1' }),
+    .refine((val) => val >= 1, { message: 'Page must be at least 1' }),
 
   limit: z
     .string()
     .regex(/^\d+$/, { message: 'Limit must be a positive number' })
     .transform(Number)
-    .refine(val => val >= 1 && val <= 100, { message: 'Limit must be between 1 and 100' }),
+    .refine((val) => val >= 1 && val <= 100, {
+      message: 'Limit must be between 1 and 100',
+    }),
 });
 
-export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
-  
+export const getProducts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { page, limit } = paginationSchema.parse(req.query);
 
   const result = await getPaginatedProducts(page, limit);

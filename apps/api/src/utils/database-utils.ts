@@ -1,4 +1,4 @@
-import { db } from "../db/db";
+import { db } from '../db/db';
 
 export const checkDBConnection = async (retries = 5, delay = 5000) => {
   for (let attempt = 1; attempt <= retries; attempt++) {
@@ -7,10 +7,12 @@ export const checkDBConnection = async (retries = 5, delay = 5000) => {
       console.log('Database Connected Successfully');
       return true;
     } catch (error) {
-      console.error(`Database Connection Failed (Attempt ${attempt}/${retries})`);
+      console.error(
+        `Database Connection Failed (Attempt ${attempt}/${retries})`
+      );
       if (attempt < retries) {
         console.log(`Retrying in ${delay / 1000} seconds...`);
-        await new Promise(res => setTimeout(res, delay));
+        await new Promise((res) => setTimeout(res, delay));
       } else {
         console.error('Could not connect to the database. Exiting...');
         process.exit(1);

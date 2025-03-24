@@ -1,5 +1,5 @@
-import { Card, CardContent, Skeleton } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Card, CardContent, Skeleton } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: 250,

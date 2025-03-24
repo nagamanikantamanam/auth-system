@@ -21,7 +21,6 @@
     "pg-promise": "^11.13.0"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.4",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "esbuild": "^0.25.1",
